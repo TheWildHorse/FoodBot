@@ -1,0 +1,34 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        doctrine:
+            entity:
+                class: App\Entity\User
+
+    firewalls:
+        secured_area:
+            anonymous: ~
+            oauth:
+                resource_owners:
+                    slack: "/login/slack"
+                login_path:        /login
+                use_forward:       false
+                failure_path:      /login
+
+                oauth_user_provider:
+                    service: App\Security\UserProvider
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+
+hwi_oauth:
+    # list of names of the firewalls in which this bundle is active, this setting MUST be set
+    firewall_names: [secured_area]
+
+    resource_owners:
+        slack:
+            type:                slack
+            client_id:           "253520074384.343329551027"
+            client_secret:       "b7b2d9366e6f1419e3e4f9b5c51c27a8"
+            scope:               "identity.basic identity.email"
