@@ -18,6 +18,10 @@ services:
         resource: '../src/*'
         exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
 
+    App\Services\Importers\:
+        resource: '../src/Services/Importers/*'
+        public: true
+
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
@@ -26,6 +30,9 @@ services:
 
     App\Security\UserProvider:
         arguments: ['@doctrine', 'App\Entity\User', {slack: slackId}]
+
+    Goutte\Client:
+        public: true
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

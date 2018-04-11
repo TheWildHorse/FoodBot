@@ -37,6 +37,11 @@ class Food
     private $shortName;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isDailyItem;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="foods")
      */
     private $category;
@@ -123,4 +128,24 @@ class Food
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getisDailyItem()
+    {
+        return $this->isDailyItem;
+    }
+
+    /**
+     * @param mixed $isDailyItem
+     * @return Food
+     */
+    public function setIsDailyItem($isDailyItem)
+    {
+        $this->isDailyItem = $isDailyItem;
+        return $this;
+    }
+
+
 }

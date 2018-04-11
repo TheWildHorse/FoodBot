@@ -80,6 +80,9 @@
     "evenement/evenement": {
         "version": "v3.0.1"
     },
+    "fabpot/goutte": {
+        "version": "v3.2.2"
+    },
     "fig/link-util": {
         "version": "1.0.0"
     },

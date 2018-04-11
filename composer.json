@@ -5,6 +5,7 @@
         "php": "^7.1.3",
         "ext-iconv": "*",
         "botman/botman": "^2.3",
+        "fabpot/goutte": "^3.2",
         "hwi/oauth-bundle": "^0.6.2",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/httplug-bundle": "^1.10",
