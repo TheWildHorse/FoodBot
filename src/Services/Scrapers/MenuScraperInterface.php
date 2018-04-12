@@ -1,13 +1,16 @@
 <?php
 
 
-namespace App\Services\Importers;
+namespace App\Services\Scrapers;
 
 
 use App\Entity\Food;
+use App\Entity\Restaraunt;
 
-interface MenuImporterInterface
+interface MenuScraperInterface
 {
+    public function getRestaraunt(): Restaraunt;
+
     /**
      * Fetches and returns daily Food objects for the restaurant
      * @return Food[]

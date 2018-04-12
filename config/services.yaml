@@ -18,8 +18,12 @@ services:
         resource: '../src/*'
         exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
 
-    App\Services\Importers\:
-        resource: '../src/Services/Importers/*'
+    App\Services\Scrapers\:
+        resource: '../src/Services/Scrapers/*'
+        public: true
+
+    App\Services\Import\:
+        resource: '../src/Services/Import/*'
         public: true
 
     # controllers are imported separately to make sure services can be injected
@@ -33,6 +37,9 @@ services:
 
     Goutte\Client:
         public: true
+
+    BotMan\BotMan\BotMan:
+        factory: 'App\Services\Communication\BotManFactory:getInstance'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

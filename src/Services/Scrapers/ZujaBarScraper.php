@@ -1,13 +1,14 @@
 <?php
 
 
-namespace App\Services\Importers;
+namespace App\Services\Scrapers;
 
 
 use App\Entity\Food;
+use App\Entity\Restaraunt;
 use Goutte\Client;
 
-class ZujaBarImporter implements MenuImporterInterface
+class ZujaBarScraper implements MenuScraperInterface
 {
 
     /**
@@ -48,9 +49,21 @@ class ZujaBarImporter implements MenuImporterInterface
             $price = preg_replace('/[a-z ]/i', '', $price);
             $food->setPrice((float) $price);
             $food->setName($node->filter('.itemName')->first()->text());
+            $food->setRestaurant($this->getRestaraunt());
             return $food;
         });
 
         return $items;
+    }
+
+    /**
+     * @return Restaraunt
+     */
+    public function getRestaraunt(): Restaraunt
+    {
+        return (new Restaraunt())
+            ->setName('Restoran Žuja Bar')
+            ->setMinimumOrderAmount(100)
+            ->setTelephone('00385981715938');
     }
 }

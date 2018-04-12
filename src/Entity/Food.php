@@ -27,7 +27,7 @@ class Food
     private $healthScore;
 
     /**
-     * @ORM\Column(type="decimal", precision=2)
+     * @ORM\Column(type="decimal", precision=8)
      */
     private $price;
 

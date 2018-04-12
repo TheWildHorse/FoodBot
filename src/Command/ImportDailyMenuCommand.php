@@ -2,7 +2,8 @@
 
 namespace App\Command;
 
-use App\Services\Importers\MenuImporterInterface;
+use App\Services\Import\FoodImportService;
+use App\Services\Scrapers\MenuScraperInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,17 +24,20 @@ class ImportDailyMenuCommand extends ContainerAwareCommand
     {
         $io = new SymfonyStyle($input, $output);
         $importers = [
-            \App\Services\Importers\FontanaCrnkovicImporter::class,
-            \App\Services\Importers\ZujaBarImporter::class
+            \App\Services\Scrapers\FontanaCrnkovicScraper::class,
+            \App\Services\Scrapers\ZujaBarScraper::class
         ];
         $results = [];
         foreach($importers as $importerClass) {
-            /** @var MenuImporterInterface $importerInstance */
+            /** @var MenuScraperInterface $importerInstance */
             $importerInstance = $this->getContainer()->get($importerClass);
             $results = array_merge($results, $importerInstance->fetchDailyFood());
         }
 
-        // ToDo: Implement persistance layer
+        /** @var FoodImportService $importService */
+        $importService = $this->getContainer()->get(\App\Services\Import\FoodImportService::class);
+        $importService->deleteDailyFoods();
+        $importService->importFoods($results);
 
         $io->success('All importers ran successfully!');
     }
