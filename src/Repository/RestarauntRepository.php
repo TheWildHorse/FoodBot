@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Restaraunt;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -17,6 +18,20 @@ class RestarauntRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Restaraunt::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRestaurantsWithDailyItems()
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.foods', 'f')
+            ->where('f.isDailyItem = 1')
+            ->orderBy('r.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
 //    /**

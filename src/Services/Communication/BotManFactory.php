@@ -4,10 +4,9 @@
 namespace App\Services\Communication;
 
 
-use BotMan\BotMan\Cache\SymfonyCache;
+use BotMan\BotMan\Cache\RedisCache;
 use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\Drivers\Slack\SlackDriver;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 /**
  * Class BotManFactory
@@ -21,14 +20,13 @@ class BotManFactory
     public static function getInstance() {
         $config = [
             'slack' => [
-                'token' => 'xoxb-343431946082-0dH9nptR4uZzUP4uWshcmG7M'
+                'token' => 'xoxb-343431946082-eEmDdybktOIbtieuYWaG6xw0'
             ]
         ];
 
         DriverManager::loadDriver(SlackDriver::class);
 
-        $adapter = new FilesystemAdapter();
-        $botman = \BotMan\BotMan\BotManFactory::create($config, new SymfonyCache($adapter));
+        $botman = \BotMan\BotMan\BotManFactory::create($config, new RedisCache());
 
         return $botman;
     }

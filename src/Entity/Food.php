@@ -42,6 +42,11 @@ class Food
     private $isDailyItem;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isMainMeal = true;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="foods")
      */
     private $category;
@@ -147,5 +152,22 @@ class Food
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getisMainMeal()
+    {
+        return $this->isMainMeal;
+    }
+
+    /**
+     * @param mixed $isMainMeal
+     * @return Food
+     */
+    public function setIsMainMeal($isMainMeal)
+    {
+        $this->isMainMeal = $isMainMeal;
+        return $this;
+    }
 
 }

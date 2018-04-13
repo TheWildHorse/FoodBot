@@ -38,6 +38,9 @@ class FontanaCrnkovicScraper implements MenuScraperInterface
              $price = $node->filter('.amount')->first()->text();
              $price = preg_replace('/[a-z ]/i', '', $price);
              $food->setPrice((float) $price);
+             if($food->getPrice() < 5) {
+                 $food->setIsMainMeal(false);
+             }
              $food->setName(ucfirst(mb_strtolower($node->filter('h6 > a')->first()->text())));
              $food->setRestaurant($this->getRestaraunt());
              return $food;

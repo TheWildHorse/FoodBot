@@ -32,7 +32,9 @@ class FoodImportService
         $this->em->getRepository('App:Food')
             ->createQueryBuilder('f')
             ->where('f.isDailyItem = 1')
-            ->delete();
+            ->delete()
+            ->getQuery()
+            ->execute();
     }
 
     /**

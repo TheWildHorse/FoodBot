@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for r in restaurants %}
+        <h2>{{ r.name }}</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Jelo</th>
+                    <th>Cijena</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for f in r.foods %}
+                <tr>
+                    <td>{{ f.name }}</td>
+                    <td>{{ f.price|number_format(2, '.', ',') }} kn</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+{% endblock %}
