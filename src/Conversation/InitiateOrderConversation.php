@@ -41,6 +41,9 @@ class InitiateOrderConversation extends Conversation
             'Ništa od navedenog ti se ne jede? Nema problema - pogledaj cijelu ponudu ovdje: '.$fullMenuLink . PHP_EOL . '*Današnja dnevna ponuda:*',
             ['attachments' => json_encode($this->getDailyMenuAttachments())]
         );
+        $this->getBot()->startConversation(
+            $this->container->get(OrderConversation::class)
+        );
     }
 
     private function getDailyMenuAttachments()

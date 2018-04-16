@@ -23,6 +23,8 @@ class CommunicationController extends Controller
      */
     public function orderingLogic(BotMan $botman) {
         $botman->hears('ola', function (BotMan $bot) {
+            $bot->reply('
+            Dobro jutro ' . $bot->getUser()->getUsername() . '!');
             $bot->startConversation($this->get(InitiateOrderConversation::class));
         });
         $botman->listen();

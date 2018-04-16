@@ -28,9 +28,21 @@ class OrderItem
     private $food;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="boolean")
      */
-    private $isPaid;
+    private $isPaid = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="orderItems")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $order;
 
     public function getId()
     {
@@ -72,4 +84,43 @@ class OrderItem
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     * @return OrderItem
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param mixed $order
+     * @return OrderItem
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+        return $this;
+    }
+
+
+
 }

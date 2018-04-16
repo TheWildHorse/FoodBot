@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
+ * @ORM\Table(name="orders")
  */
 class Order
 {
@@ -41,6 +42,11 @@ class Order
      * @ORM\Column(type="datetime")
      */
     private $endTime;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="order", orphanRemoval=true)
+     */
+    private $orderItems;
 
     public function getId()
     {
@@ -104,6 +110,30 @@ class Order
     {
         $this->endTime = $endTime;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderItems()
+    {
+        return $this->orderItems;
+    }
+
+    /**
+     * @param mixed $orderItems
+     * @return Order
+     */
+    public function setOrderItems($orderItems)
+    {
+        $this->orderItems = $orderItems;
+        return $this;
+    }
+
+    public function addOrderItem($orderItem)
+    {
+        $this->orderItems[] = $orderItem;
         return $this;
     }
 }
