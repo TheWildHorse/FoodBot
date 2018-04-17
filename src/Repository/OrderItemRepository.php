@@ -39,32 +39,17 @@ class OrderItemRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-//    /**
-//     * @return OrderItem[] Returns an array of OrderItem objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    public function getGroupedOrderItems($orderId) {
+        $q = $this
+            ->createQueryBuilder('i')
+            ->select('f.name as name, COUNT(i) as count')
+            ->join('i.food', 'f')
+            ->where('i.order = :orderId')
+            ->groupBy('i.id')
+            ->setParameter('orderId', $orderId)
+            ->getQuery();
 
-    /*
-    public function findOneBySomeField($value): ?OrderItem
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $q->getResult();
     }
-    */
+
 }

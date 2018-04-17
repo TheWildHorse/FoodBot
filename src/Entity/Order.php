@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +48,17 @@ class Order
      * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="order", orphanRemoval=true)
      */
     private $orderItems;
+
+    /**
+     * @ORM\PostUpdate()
+     * @param LifecycleEventArgs $event
+     */
+    public function postUpdate(LifecycleEventArgs $event)
+    {
+        if ($event->hasChangedField('isDelivered')) {
+            die("test");
+        }
+    }
 
     public function getId()
     {

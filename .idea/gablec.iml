@@ -43,6 +43,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sentry/sentry-symfony" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/macroable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tightenco/collect" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/twilio/sdk" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-escaper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-http" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-loader" />

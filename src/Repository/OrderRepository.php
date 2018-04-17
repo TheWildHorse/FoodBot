@@ -57,32 +57,26 @@ class OrderRepository extends ServiceEntityRepository
         return $order;
     }
 
-//    /**
-//     * @return Order[] Returns an array of Order objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Order
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    /**
+     * @param \DateTime $date
+     * @return Order[]
+     */
+    public function getOrdersForDate(\DateTime $date): array {
+        $fromDate = $date;
+        $fromDate->setTime(0, 0, 0);
+        $toDate = clone $fromDate;
+        $toDate->modify('+1 day');
+
+        $q = $this
+            ->createQueryBuilder('o')
+            ->where('o.endTime >= :fromDate')
+            ->andWhere('o.endTime < :toDate')
+            ->setParameter('fromDate', $fromDate)
+            ->setParameter('toDate', $toDate)
+            ->getQuery();
+
+        return $q->getResult();
     }
-    */
+
 }

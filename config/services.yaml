@@ -43,9 +43,15 @@ services:
 
     Goutte\Client:
         public: true
-
     BotMan\BotMan\BotMan:
         factory: 'App\Services\Communication\BotManFactory:getInstance'
+    App\Services\GiphyService:
+        public: true
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # EVENTS
+    App\Event\DeliveredEventSubscriber:
+      tags:
+        - { name: doctrine.event_listener, event: postUpdate }

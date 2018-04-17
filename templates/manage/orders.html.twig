@@ -1,0 +1,110 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <br><br><br>
+    <style>
+        .btn.btn-secondary {
+            background-color: #CCC;
+            border-color: #CCC;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-12">
+            {% for order in orders %}
+                <h2>{{ order.restaraunt.name }}</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <b>Telefon:</b> {{ order.restaraunt.telephone }}<br>
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary {% if order.isOrdered %} active {% endif %}">
+                                <input type="checkbox" data-id="{{ order.id }}" name="isOrdered" {% if order.isOrdered %} checked {% endif %}/> Naručeno
+                            </label>
+                            <label class="btn btn-secondary {% if order.isDelivered %} active {% endif %}">
+                                <input type="checkbox" data-id="{{ order.id }}" name="isDelivered" {% if order.isDelivered %} checked {% endif %}/> Dostavljeno
+                            </label>
+                            <button class="btn btn-success autoorder" {% if order.isOrdered %} style="display: none;" {% endif %} data-endpoint="{{ url('app_api_orderapi_autoorder', {orderId: order.id} ) }}">Pokreni automatsku narudžbu</button>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Jelo</th>
+                        <th>Cijena</th>
+                        <th>Naručioc</th>
+                        <th>Plaćeno?</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in order.orderItems %}
+                        <tr data-id="{{ item.id }}" {% if item.isPaid %} class="table-success" {% endif %}>
+                            <td>{{ item.food.name }}</td>
+                            <td>{{ item.food.price|number_format }}</td>
+                            <td>{{ item.user.name }}</td>
+                            <td><input type="checkbox" name="isPaid" {% if item.isPaid %} checked {% endif %}/></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+        $('input[name=isPaid]').change(function() {
+            $(this).closest('tr').toggleClass('table-success');
+            // Send AJAX
+            $.ajax("/api/order/paid_status", {
+                method: "POST",
+                data: {
+                    orderItemId: $(this).closest('tr').data('id'),
+                    isPaid: $(this).is(':checked') ? 1 : 0
+                }
+            });
+        });
+        $('input[name=isOrdered]').change(function() {
+            if($(this).is(':checked')) {
+                $('.autoorder').hide();
+            }
+            else {
+                $('.autoorder').show();
+            }
+            // Send AJAX
+            $.ajax("/api/order/ordered_status", {
+                method: "POST",
+                data: {
+                    orderId: $(this).data('id'),
+                    isOrdered: $(this).is(':checked') ? 1 : 0
+                }
+            });
+        });
+        $('input[name=isDelivered]').change(function() {
+            // Send AJAX
+            $.ajax("/api/order/delivered_status", {
+                method: "POST",
+                data: {
+                    orderId: $(this).data('id'),
+                    isDelivered: $(this).is(':checked') ? 1 : 0
+                }
+            });
+        });
+
+
+        $('.autoorder').click(function() {
+            $(this).prop('disabled', true);
+            $('input[name=isOrdered]').click();
+            // Send AJAX
+            $.ajax($(this).data('endpoint'), {
+                method: "GET"
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -46,11 +46,11 @@ class OrderConversation extends Conversation
                 ->addButton(
                     Button::create(':white_check_mark: To je to!')
                         ->name('done_button')
-                        ->value('yes')
+                        ->value('done')
                 );
 
             $this->ask($question, function (Answer $answer) {
-                if ($answer->isInteractiveMessageReply()) {
+                if ($answer->isInteractiveMessageReply() && $answer->getValue() === 'done') {
                     // ToDo: Start Payment Conversation
                     return;
                 }
@@ -112,7 +112,7 @@ class OrderConversation extends Conversation
     {
         $em = $this->container->get('doctrine.orm.default_entity_manager');
         $currentOrder = $em->getRepository('App:OrderItem')->getTodaysOrderItemsForUser($this->getUser());
-        if($currentOrder === null) {
+        if(empty($currentOrder)) {
             return null;
         }
 

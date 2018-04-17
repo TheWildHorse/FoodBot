@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
 {
@@ -32,6 +33,15 @@ class User implements UserInterface
      */
     private $slackId;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="user", orphanRemoval=true)
+     */
+    private $orderItems;
+
+    /**
+     * @ORM\Column(type="decimal", precision=8)
+     */
+    private $moneyBalance = 0;
 
     public function getId()
     {
@@ -161,4 +171,32 @@ class User implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderItems()
+    {
+        return $this->orderItems;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMoneyBalance()
+    {
+        return $this->moneyBalance;
+    }
+
+    /**
+     * @param mixed $moneyBalance
+     * @return User
+     */
+    public function setMoneyBalance($moneyBalance)
+    {
+        $this->moneyBalance = $moneyBalance;
+        return $this;
+    }
+
+
 }
