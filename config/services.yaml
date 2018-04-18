@@ -47,6 +47,8 @@ services:
         factory: 'App\Services\Communication\BotManFactory:getInstance'
     App\Services\GiphyService:
         public: true
+    App\Services\Payment\PaymentProcessingService:
+        public: true
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

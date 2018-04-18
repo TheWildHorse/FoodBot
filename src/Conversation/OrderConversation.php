@@ -51,7 +51,9 @@ class OrderConversation extends Conversation
 
             $this->ask($question, function (Answer $answer) {
                 if ($answer->isInteractiveMessageReply() && $answer->getValue() === 'done') {
-                    // ToDo: Start Payment Conversation
+                    $this->getBot()->startConversation(
+                        $this->container->get(PaymentProccessingConversation::class)
+                    );
                     return;
                 }
                 $selectedOptions = $answer->getValue();
