@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "471474f071aa8663917d952e2a7a7d47",
+    "content-hash": "b9fc3bde934d6b950dbc0f78960b0e7a",
     "packages": [
         {
             "name": "botman/botman",
@@ -2193,6 +2193,57 @@
                 "slack"
             ],
             "time": "2017-12-22T22:07:13+00:00"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "v4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "e4a54fa90a5cd8e8dd3fb4099942681731c5cdd3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e4a54fa90a5cd8e8dd3fb4099942681731c5cdd3",
+                "reference": "e4a54fa90a5cd8e8dd3fb4099942681731c5cdd3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5 || ^7.0"
+            },
+            "bin": [
+                "bin/php-parse"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpParser\\": "lib/PhpParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "time": "2018-03-25T17:35:16+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -4450,6 +4501,90 @@
             "time": "2017-12-12T17:04:29+00:00"
         },
         {
+            "name": "sonata-project/doctrine-orm-admin-bundle",
+            "version": "3.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
+                "reference": "f98eb6c3c7c0e1573a3216579e99e77961ed7996"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/f98eb6c3c7c0e1573a3216579e99e77961ed7996",
+                "reference": "f98eb6c3c7c0e1573a3216579e99e77961ed7996",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "^1.8",
+                "doctrine/orm": "^2.4.5",
+                "php": "^5.6 || ^7.0",
+                "sonata-project/admin-bundle": "^3.29",
+                "sonata-project/core-bundle": "^3.8",
+                "sonata-project/exporter": "^1.3.1",
+                "symfony/config": "^2.8 || ^3.2 || ^4.0",
+                "symfony/console": "^2.8 || ^3.2 || ^4.0",
+                "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
+                "symfony/doctrine-bridge": "^2.8 || ^3.2 || ^4.0",
+                "symfony/form": "^2.8 || ^3.2 || ^4.0",
+                "symfony/framework-bundle": "^2.8 || ^3.2 || ^4.0",
+                "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
+                "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
+                "symfony/options-resolver": "^2.8 || ^3.2 || ^4.0",
+                "symfony/security-acl": "^2.8 || ^3.0"
+            },
+            "conflict": {
+                "simplethings/entity-audit-bundle": ">=2.0",
+                "sonata-project/block-bundle": "<3.11"
+            },
+            "provide": {
+                "sonata-project/admin-bundle-persistency-layer": "1.0.0"
+            },
+            "require-dev": {
+                "simplethings/entity-audit-bundle": "^0.9 || ^1.0",
+                "sonata-project/block-bundle": "^3.11",
+                "symfony/phpunit-bridge": "^4.0"
+            },
+            "suggest": {
+                "simplethings/entity-audit-bundle": "If you want to support for versioning of entities and their associations."
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\DoctrineORMAdminBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/contributors"
+                },
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org",
+                    "homepage": "https://sonata-project.org"
+                }
+            ],
+            "description": "Symfony Sonata / Integrate Doctrine ORM into the SonataAdminBundle",
+            "homepage": "https://sonata-project.org/bundles/admin",
+            "keywords": [
+                "Admin Generator",
+                "admin",
+                "bootstrap",
+                "generator",
+                "sonata"
+            ],
+            "time": "2018-04-10T08:11:48+00:00"
+        },
+        {
             "name": "sonata-project/exporter",
             "version": "1.8.0",
             "source": {
@@ -6116,6 +6251,71 @@
             "description": "Enforces Long Term Supported versions of Symfony components",
             "homepage": "https://symfony.com",
             "time": "2018-04-03T05:04:16+00:00"
+        },
+        {
+            "name": "symfony/maker-bundle",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/maker-bundle.git",
+                "reference": "253cee42124de11dc0a5bb7c91e5375d7197be12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/253cee42124de11dc0a5bb7c91e5375d7197be12",
+                "reference": "253cee42124de11dc0a5bb7c91e5375d7197be12",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "^1.2",
+                "nikic/php-parser": "^4.0",
+                "php": "^7.1.3",
+                "symfony/config": "^3.4|^4.0",
+                "symfony/console": "^3.4|^4.0",
+                "symfony/dependency-injection": "^3.4|^4.0",
+                "symfony/filesystem": "^3.4|^4.0",
+                "symfony/finder": "^3.4|^4.0",
+                "symfony/framework-bundle": "^3.4|^4.0",
+                "symfony/http-kernel": "^3.4|^4.0"
+            },
+            "require-dev": {
+                "allocine/twigcs": "^3.0",
+                "doctrine/doctrine-bundle": "^1.8",
+                "doctrine/orm": "^2.6",
+                "friendsofphp/php-cs-fixer": "^2.8",
+                "symfony/phpunit-bridge": "^3.4|^4.0",
+                "symfony/process": "^3.4|^4.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Bundle\\MakerBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Maker helps you create empty commands, controllers, form classes, tests and more so you can forget about writing boilerplate code.",
+            "homepage": "https://symfony.com/doc/current/bundles/SymfonyMakerBundle/index.html",
+            "keywords": [
+                "code generator",
+                "generator",
+                "scaffold",
+                "scaffolding"
+            ],
+            "time": "2018-04-11T22:44:12+00:00"
         },
         {
             "name": "symfony/monolog-bridge",
@@ -8675,57 +8875,6 @@
             "time": "2018-01-10T08:34:20+00:00"
         },
         {
-            "name": "nikic/php-parser",
-            "version": "v4.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "e4a54fa90a5cd8e8dd3fb4099942681731c5cdd3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e4a54fa90a5cd8e8dd3fb4099942681731c5cdd3",
-                "reference": "e4a54fa90a5cd8e8dd3fb4099942681731c5cdd3",
-                "shasum": ""
-            },
-            "require": {
-                "ext-tokenizer": "*",
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^6.5 || ^7.0"
-            },
-            "bin": [
-                "bin/php-parse"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpParser\\": "lib/PhpParser"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Nikita Popov"
-                }
-            ],
-            "description": "A PHP parser written in PHP",
-            "keywords": [
-                "parser",
-                "php"
-            ],
-            "time": "2018-03-25T17:35:16+00:00"
-        },
-        {
             "name": "symfony/debug-bundle",
             "version": "v4.0.8",
             "source": {
@@ -8876,71 +9025,6 @@
                 "environment"
             ],
             "time": "2018-01-03T17:15:19+00:00"
-        },
-        {
-            "name": "symfony/maker-bundle",
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "c936864823ac60508e37d8fb1d9bc6a02d03ffa7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/c936864823ac60508e37d8fb1d9bc6a02d03ffa7",
-                "reference": "c936864823ac60508e37d8fb1d9bc6a02d03ffa7",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/inflector": "^1.2",
-                "nikic/php-parser": "^4.0",
-                "php": "^7.1.3",
-                "symfony/config": "^3.4|^4.0",
-                "symfony/console": "^3.4|^4.0",
-                "symfony/dependency-injection": "^3.4|^4.0",
-                "symfony/filesystem": "^3.4|^4.0",
-                "symfony/finder": "^3.4|^4.0",
-                "symfony/framework-bundle": "^3.4|^4.0",
-                "symfony/http-kernel": "^3.4|^4.0"
-            },
-            "require-dev": {
-                "allocine/twigcs": "^3.0",
-                "doctrine/doctrine-bundle": "^1.8",
-                "doctrine/orm": "^2.6",
-                "friendsofphp/php-cs-fixer": "^2.8",
-                "symfony/phpunit-bridge": "^3.4|^4.0",
-                "symfony/process": "^3.4|^4.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Bundle\\MakerBundle\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Maker helps you create empty commands, controllers, form classes, tests and more so you can forget about writing boilerplate code.",
-            "homepage": "https://symfony.com/doc/current/bundles/SymfonyMakerBundle/index.html",
-            "keywords": [
-                "code generator",
-                "generator",
-                "scaffold",
-                "scaffolding"
-            ],
-            "time": "2018-03-21T13:40:46+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",

@@ -41,6 +41,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/react/stream" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sentry/sentry" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sentry/sentry-symfony" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/sonata-project/doctrine-orm-admin-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/macroable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tightenco/collect" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twilio/sdk" />

@@ -57,3 +57,11 @@ services:
     App\Event\DeliveredEventSubscriber:
       tags:
         - { name: doctrine.event_listener, event: postUpdate }
+
+    # ADMIN
+    admin.user:
+      class: App\Admin\UserAdmin
+      arguments: [~, App\Entity\User, ~]
+      tags:
+          - { name: sonata.admin, manager_type: orm, label: "Korisnički Računi" }
+      public: true
