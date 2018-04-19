@@ -30,17 +30,15 @@ class FavouritesConversation extends Conversation
             ->callbackId('favourites_response');
 
         $this->ask($question, function (Answer $answer) {
-            if($answer->getCallbackId() === 'favourites_response') {
-                $em = $this->container->get('doctrine.orm.default_entity_manager');
-                $user = $em->getRepository('App:User')->findOneBy(['slackId' => $this->getBot()->getUser()->getId()]);
-                $kps = $this->container->get(KeywordProcessingService::class);
-                $user->setFavourites($kps->getKeywordsFromText($answer->getText()));
-                $em->persist($user);
-                $em->flush();
+            $em = $this->container->get('doctrine.orm.default_entity_manager');
+            $user = $em->getRepository('App:User')->findOneBy(['slackId' => $this->getBot()->getUser()->getId()]);
+            $kps = $this->container->get(KeywordProcessingService::class);
+            $user->setFavourites($kps->getKeywordsFromText($answer->getText()));
+            $em->persist($user);
+            $em->flush();
 
-                $this->say('Okej, sad znam što voliš!');
-                $this->getBot()->startConversation($this->container->get(InitiateOrderConversation::class));
-            }
+            $this->say('Okej, sad znam što voliš!');
+            $this->getBot()->startConversation($this->container->get(InitiateOrderConversation::class));
         });
     }
 }
