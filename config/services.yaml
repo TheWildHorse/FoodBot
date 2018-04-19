@@ -47,6 +47,8 @@ services:
         factory: 'App\Services\Communication\BotManFactory:getInstance'
     App\Services\GiphyService:
         public: true
+    App\Services\NLP\KeywordProcessingService:
+        public: true
     App\Services\Payment\PaymentProcessingService:
         public: true
 
@@ -65,3 +67,17 @@ services:
       tags:
           - { name: sonata.admin, manager_type: orm, label: "Korisnički Računi" }
       public: true
+    admin.restaurant:
+      class: App\Admin\RestaurantAdmin
+      arguments: [~, App\Entity\Restaraunt, ~]
+      tags:
+          - { name: sonata.admin, manager_type: orm, label: "Restorani" }
+      public: true
+    admin.food:
+      class: App\Admin\FoodAdmin
+      arguments: [~, App\Entity\Food, ~]
+      tags:
+          - { name: sonata.admin, manager_type: orm, label: "Jela" }
+      public: true
+
+

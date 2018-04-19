@@ -43,6 +43,11 @@ class User implements UserInterface
      */
     private $moneyBalance = 0;
 
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $favourites = [];
+
     public function getId()
     {
         return $this->id;
@@ -198,5 +203,22 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFavourites()
+    {
+        return $this->favourites;
+    }
+
+    /**
+     * @param mixed $favourites
+     * @return User
+     */
+    public function setFavourites($favourites)
+    {
+        $this->favourites = $favourites;
+        return $this;
+    }
 
 }

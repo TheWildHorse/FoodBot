@@ -3,7 +3,6 @@
 
 namespace App\Admin;
 
-
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -11,7 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class UserAdmin extends AbstractAdmin
+class RestaurantAdmin extends AbstractAdmin
 {
 
     /**
@@ -23,9 +22,8 @@ class UserAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('name')
-            ->add('email')
-            ->add('slackId')
-            ->add('moneyBalance')
+            ->add('telephone')
+            ->add('minimumOrderAmount')
         ;
     }
 
@@ -38,9 +36,8 @@ class UserAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name')
-            ->add('email')
-            ->add('slackId')
-            ->add('moneyBalance')
+            ->add('telephone')
+            ->add('minimumOrderAmount')
         ;
     }
 
@@ -53,9 +50,8 @@ class UserAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('email')
-            ->add('slackId')
-            ->add('moneyBalance')
+            ->add('telephone')
+            ->add('minimumOrderAmount')
         ;
     }
 
@@ -68,8 +64,8 @@ class UserAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
-            ->add('email')
-            ->add('slackId')
+            ->add('telephone')
+            ->add('minimumOrderAmount')
         ;
     }
 

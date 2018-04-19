@@ -14,6 +14,8 @@ sonata_admin:
                     - admin.user
                     - route: app_manage_ordermanagement_getorderspanel
                       label: "Narudžbe"
+                    - admin.restaurant
+                    - admin.food
 
 sonata_block:
     blocks:

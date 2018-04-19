@@ -5,6 +5,7 @@ namespace App\Services\Import;
 
 
 use App\Entity\Food;
+use App\Services\NLP\KeywordProcessingService;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -19,12 +20,18 @@ class FoodImportService
     protected $em;
 
     /**
+     * @var KeywordProcessingService
+     */
+    protected $kps;
+
+    /**
      * FoodImportService constructor.
      * @param EntityManagerInterface $em
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, KeywordProcessingService $kps)
     {
         $this->em = $em;
+        $this->kps = $kps;
     }
 
     public function deleteDailyFoods()
@@ -51,8 +58,7 @@ class FoodImportService
     /**
      * Imports a single food item for a restaraunt.
      * @param Food $food
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Exception
      */
     public function importFood(Food $food)
     {
@@ -69,6 +75,8 @@ class FoodImportService
                 return;
             }
         }
+
+        $food->setKeywordText(implode(' ', $this->kps->getKeywordsFromText($food->getName())));
 
         $this->em->persist($food->getRestaurant());
         $this->em->persist($food);

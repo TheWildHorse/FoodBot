@@ -47,6 +47,11 @@ class Food
     private $isMainMeal = true;
 
     /**
+     * @ORM\Column(type="text")
+     */
+    private $keywordText = '';
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="foods")
      */
     private $category;
@@ -167,6 +172,24 @@ class Food
     public function setIsMainMeal($isMainMeal)
     {
         $this->isMainMeal = $isMainMeal;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKeywordText()
+    {
+        return $this->keywordText;
+    }
+
+    /**
+     * @param mixed $keywordText
+     * @return Food
+     */
+    public function setKeywordText($keywordText)
+    {
+        $this->keywordText = $keywordText;
         return $this;
     }
 

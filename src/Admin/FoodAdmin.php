@@ -3,7 +3,6 @@
 
 namespace App\Admin;
 
-
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -11,7 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class UserAdmin extends AbstractAdmin
+class FoodAdmin extends AbstractAdmin
 {
 
     /**
@@ -22,10 +21,13 @@ class UserAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
+            ->add('restaurant')
             ->add('name')
-            ->add('email')
-            ->add('slackId')
-            ->add('moneyBalance')
+            ->add('healthScore')
+            ->add('shortName')
+            ->add('isDailyItem')
+            ->add('isMainMeal')
+            ->add('price')
         ;
     }
 
@@ -37,10 +39,13 @@ class UserAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('restaurant')
             ->add('name')
-            ->add('email')
-            ->add('slackId')
-            ->add('moneyBalance')
+            ->add('healthScore')
+            ->add('shortName')
+            ->add('isDailyItem')
+            ->add('isMainMeal')
+            ->add('price')
         ;
     }
 
@@ -52,10 +57,11 @@ class UserAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('restaurant')
             ->addIdentifier('name')
-            ->add('email')
-            ->add('slackId')
-            ->add('moneyBalance')
+            ->add('isDailyItem')
+            ->add('isMainMeal')
+            ->add('price')
         ;
     }
 
@@ -67,9 +73,10 @@ class UserAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('restaurant')
             ->add('name')
-            ->add('email')
-            ->add('slackId')
+            ->add('isDailyItem')
+            ->add('isMainMeal')
         ;
     }
 

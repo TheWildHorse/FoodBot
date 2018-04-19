@@ -19,6 +19,23 @@ class FoodRepository extends ServiceEntityRepository
         parent::__construct($registry, Food::class);
     }
 
+    /**
+     * Returns foods that match the keywords
+     * @param $keywords
+     * @return mixed
+     */
+    public function getFoodsByKeywords($keywords)
+    {
+        $q = $this->createQueryBuilder('f')
+            ->where('f.keywordText = "'. implode(' ',$keywords). '"');
+        foreach($keywords as $keyword) {
+            $q->orWhere('f.keywordText LIKE "%'.$keyword.'%"');
+        }
+
+        return $q->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Food[] Returns an array of Food objects
 //     */
