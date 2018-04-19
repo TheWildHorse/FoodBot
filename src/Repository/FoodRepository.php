@@ -27,9 +27,9 @@ class FoodRepository extends ServiceEntityRepository
     public function getFoodsByKeywords($keywords)
     {
         $q = $this->createQueryBuilder('f')
-            ->where('f.keywordText = "'. implode(' ',$keywords). '"');
+            ->where('f.keywordText = \''. implode(' ',$keywords). '\'');
         foreach($keywords as $keyword) {
-            $q->orWhere('f.keywordText LIKE "%'.$keyword.'%"');
+            $q->orWhere('f.keywordText LIKE \'%'.trim($keyword, ',.;!? ').'%\'');
         }
 
         return $q->getQuery()
