@@ -80,7 +80,7 @@ class InitiateOrderConversation extends Conversation
         $foods = $this->container->get('doctrine.orm.default_entity_manager')
             ->getRepository('App:Food')
             ->getFoodsByKeywords($this->getUser()->getFavourites());
-        if($foods === null) {
+        if(empty($foods)) {
             return null;
         }
 

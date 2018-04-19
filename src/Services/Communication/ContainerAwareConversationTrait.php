@@ -20,6 +20,7 @@ trait ContainerAwareConversationTrait
         $debug = (bool) ($_SERVER['APP_DEBUG'] ?? ('prod' !== $env));
         $kernel = new Kernel($env, $debug);
         $kernel->boot();
+        $kernel->getContainer()->get('router')->getContext()->setHost('foodbot.rinkovec.com');
         $this->setContainer($kernel->getContainer());
     }
 }
