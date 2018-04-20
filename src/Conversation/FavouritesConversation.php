@@ -5,6 +5,7 @@ namespace App\Conversation;
 
 
 use App\Entity\Restaraunt;
+use App\Entity\User;
 use App\Helper\MarkdownTableHelper;
 use App\Services\Communication\ContainerAwareConversationTrait;
 use App\Services\NLP\KeywordProcessingService;
@@ -32,6 +33,13 @@ class FavouritesConversation extends Conversation
         $this->ask($question, function (Answer $answer) {
             $em = $this->container->get('doctrine.orm.default_entity_manager');
             $user = $em->getRepository('App:User')->findOneBy(['slackId' => $this->getBot()->getUser()->getId()]);
+            if($user === null) {
+                $user = new User();
+                $user
+                    ->setSlackId($this->getBot()->getUser()->getId())
+                    ->setName($this->getBot()->getUser()->getUsername())
+                    ->setEmail($this->getBot()->getUser()->getInfo()['profile']['email']);
+            }
             $kps = $this->container->get(KeywordProcessingService::class);
             $user->setFavourites($kps->getKeywordsFromText($answer->getText()));
             $em->persist($user);
